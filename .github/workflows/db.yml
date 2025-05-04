@@ -1,79 +1,78 @@
 name: livetv-Go
 
 on:
-workflow_dispatch:
-
-push:
-branches: ["main"]
-paths:
-- '.go'
-pull_request:
-branches: ["main"]
-paths:
-- '.go'
+  workflow_dispatch:    # 添加这一行以支持手动触发
+  push:
+    branches: ["main"]
+    paths:
+      - '.go'
+  pull_request:
+    branches: ["main"]
+    paths:
+      - '.go'
 
 jobs:
-linux_amd64_build:
-runs-on: ubuntu-latest
-steps:
-- uses: actions/checkout@v4
-- name: Cross Compile
-run: |
-GOOS=linux GOARCH=amd64 go build -o livetv_linux_amd64
-- name: Upload Cross Compile Artifacts
-uses: actions/upload-artifact@v4
-with:
-name: livetv_linux_amd64
-path: livetv_linux_amd64
+  linux_amd64_build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cross Compile
+        run: |
+          GOOS=linux GOARCH=amd64 go build -o livetv_linux_amd64
+      - name: Upload Cross Compile Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: livetv_linux_amd64
+          path: livetv_linux_amd64
 
-linux_arm64_build:
-runs-on: ubuntu-latest
-steps:
-- uses: actions/checkout@v4
-- name: Cross Compile
-run: |
-GOOS=linux GOARCH=arm64 go build -o livetv_linux_arm64
-- name: Upload Cross Compile Artifacts
-uses: actions/upload-artifact@v4
-with:
-name: livetv_linux_arm64
-path: livetv_linux_arm64
+  linux_arm64_build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cross Compile
+        run: |
+          GOOS=linux GOARCH=arm64 go build -o livetv_linux_arm64
+      - name: Upload Cross Compile Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: livetv_linux_arm64
+          path: livetv_linux_arm64
 
-darwin_amd64_build:
-runs-on: ubuntu-latest
-steps:
-- uses: actions/checkout@v4
-- name: Cross Compile
-run: |
-GOOS=darwin GOARCH=amd64 go build -o livetv_darwin_amd64
-- name: Upload Cross Compile Artifacts
-uses: actions/upload-artifact@v4
-with:
-name: livetv_darwin_amd64
-path: livetv_darwin_amd64
+  darwin_amd64_build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cross Compile
+        run: |
+          GOOS=darwin GOARCH=amd64 go build -o livetv_darwin_amd64
+      - name: Upload Cross Compile Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: livetv_darwin_amd64
+          path: livetv_darwin_amd64
 
-darwin_arm64_build:
-runs-on: ubuntu-latest
-steps:
-- uses: actions/checkout@v4
-- name: Cross Compile
-run: |
-GOOS=darwin GOARCH=arm64 go build -o livetv_darwin_arm64
-- name: Upload Cross Compile Artifacts
-uses: actions/upload-artifact@v4
-with:
-name: livetv_darwin_arm64
-path: livetv_darwin_arm64
+  darwin_arm64_build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cross Compile
+        run: |
+          GOOS=darwin GOARCH=arm64 go build -o livetv_darwin_arm64
+      - name: Upload Cross Compile Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: livetv_darwin_arm64
+          path: livetv_darwin_arm64
 
-windows_amd64_build:
-runs-on: ubuntu-latest
-steps:
-- uses: actions/checkout@v4
-- name: Cross Compile
-run: |
-GOOS=windows GOARCH=amd64 go build -o livetv_windows_amd64.exe
-- name: Upload Cross Compile Artifacts
-uses: actions/upload-artifact@v4
-with:
-name: livetv_windows_amd64
-path: livetv_windows_amd64.exe
+  windows_amd64_build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cross Compile
+        run: |
+          GOOS=windows GOARCH=amd64 go build -o livetv_windows_amd64.exe
+      - name: Upload Cross Compile Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: livetv_windows_amd64
+          path: livetv_windows_amd64.exe
